@@ -1,0 +1,46 @@
+Declarative Pipeline Steps:     https://digitalvarys.com/jenkins-declarative-pipeline-with-examples/
+---------------------------
+
+pipeline {
+	agent…
+	stages…
+	step.. 
+}
+
+any – This means pipeline will run in any available node. (agent any)
+
+none – Ideally None mean, the pipeline will run in not run in any agent at top-level, but each stage should be defined with its own agent ( agent none ).
+
+label – This means the pipeline will be mentioned as label name and pipeline will look for the available node with the label name mentioned ( agent {label ‘my label name for node’} )
+
+node – mentioning node in the agent is same as mentioning label but this will give us more option like custom Workspace ( agent {node{label ‘my label name’}}).
+
+docker – By mentioning docker, the pipeline will run in a docker environment. ( agent{ docker {image ‘ruby3:develop’ label ‘my label name’ arg ‘—port 3000:80’} } ) )
+
+Stages:
+-------
+
+pipeline {
+    agent any
+    stages { 
+        stage('Example') {
+		...
+		...
+        }
+    }
+}
+
+
+Steps:
+------
+
+pipeline {
+    agent any
+    stages {
+        stage('Example') {
+            steps { 
+                sh 'mvn compile'
+            }
+        }
+    }
+}
